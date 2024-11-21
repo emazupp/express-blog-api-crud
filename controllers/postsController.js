@@ -1,3 +1,5 @@
+const posts = require("../data/posts");
+
 // * INDEX
 function index(req, res) {
   res.json(posts);
