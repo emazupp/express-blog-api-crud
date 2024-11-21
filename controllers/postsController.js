@@ -8,8 +8,8 @@ function index(req, res) {
 // * SHOW
 function show(req, res) {
   const id = parseInt(req.params.id);
-  const filteredPost = posts.find((post) => post.id === id);
-  res.json(filteredPost);
+  const findedPost = posts.find((post) => post.id === id);
+  res.json(findedPost);
 }
 
 // * STORE
@@ -35,8 +35,9 @@ function modify(req, res) {
 // * DESTROY
 function destroy(rew, res) {
   const id = parseInt(req.params.id);
-  const text = `Cancellazione del post con id: ${id}`;
-  res.json(text);
+  const findedPost = posts.find((post) => post.id === id);
+  const indexOfFindedPost = posts.indexOf(findedPost);
+  res.send(indexOfFindedPost);
 }
 
 module.exports = { index, show, store, update, modify, destroy };
