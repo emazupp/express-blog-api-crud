@@ -33,11 +33,11 @@ function modify(req, res) {
 }
 
 // * DESTROY
-function destroy(rew, res) {
+function destroy(req, res) {
   const id = parseInt(req.params.id);
-  const findedPost = posts.find((post) => post.id === id);
-  const indexOfFindedPost = posts.indexOf(findedPost);
-  res.send(indexOfFindedPost);
+  const indexOfFindedPost = posts.indexOf(posts.find((post) => post.id === id));
+  posts.splice(indexOfFindedPost, 1);
+  res.sendStatus(204);
 }
 
 module.exports = { index, show, store, update, modify, destroy };
