@@ -21,7 +21,6 @@ function index(req, res) {
 // * SHOW
 function show(req, res) {
   const id = parseInt(req.params.id);
-  if (!id) return;
   const findedPost = findPostById(res, id);
   res.json(findedPost);
 }
