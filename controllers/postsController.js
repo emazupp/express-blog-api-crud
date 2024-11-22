@@ -21,6 +21,7 @@ function index(req, res) {
 // * SHOW
 function show(req, res) {
   const id = parseInt(req.params.id);
+  if (!id) return;
   const findedPost = findPostById(res, id);
   res.json(findedPost);
 }
@@ -28,6 +29,9 @@ function show(req, res) {
 // * STORE
 function store(req, res) {
   const { title, content, img, tags } = req.body;
+  if (!title || !content || !img || !tags?.length) {
+    return res.status(400).json({ error: "Invalid params" });
+  }
   const id = posts.at(-1).id + 1;
   const newPost = { id, title, content, img, tags };
   posts.push(newPost);
@@ -38,6 +42,9 @@ function store(req, res) {
 function update(req, res) {
   const id = parseInt(req.params.id);
   const { title, content, img, tags } = req.body;
+  if (!title || !content || !img || !tags?.length) {
+    return res.status(400).json({ error: "Invalid params" });
+  }
 
   const findedPost = findPostById(res, id);
 
