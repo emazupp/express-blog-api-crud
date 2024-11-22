@@ -31,13 +31,12 @@ function store(req, res) {
   const id = posts.at(-1).id + 1;
   const newPost = { id, title, content, img, tags };
   posts.push(newPost);
+  res.json(newPost);
 }
 
 // * UPDATE
 function update(req, res) {
   const id = parseInt(req.params.id);
-  const text = `Modifica totale del post con id: ${id}`;
-  res.json(text);
 }
 
 // * MODIFY
