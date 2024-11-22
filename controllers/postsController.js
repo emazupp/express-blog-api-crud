@@ -37,6 +37,16 @@ function store(req, res) {
 // * UPDATE
 function update(req, res) {
   const id = parseInt(req.params.id);
+  const { title, content, img, tags } = req.body;
+
+  const findedPost = findPostById(res, id);
+
+  findedPost.title = title;
+  findedPost.content = content;
+  findedPost.img = img;
+  findedPost.tags = tags;
+
+  res.json(findedPost);
 }
 
 // * MODIFY
