@@ -15,7 +15,7 @@ function filterPostByTag(res, tag) {
 // * INDEX
 function index(req, res) {
   const { tag } = req.query;
-  res.json(filterPostByTag(res, tag));
+  tag ? res.json(filterPostByTag(res, tag)) : res.json(posts);
 }
 
 // * SHOW
@@ -28,7 +28,9 @@ function show(req, res) {
 // * STORE
 function store(req, res) {
   const { title, content, img, tags } = req.body;
-  console.log(title, content, img, tags);
+  const id = posts.at(-1).id + 1;
+  const newPost = { id, title, content, img, tags };
+  posts.push(newPost);
 }
 
 // * UPDATE
