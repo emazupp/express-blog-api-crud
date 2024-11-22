@@ -27,8 +27,8 @@ function show(req, res) {
 
 // * STORE
 function store(req, res) {
-  const text = "Creazione nuovo post";
-  res.json(text);
+  const { title, content, img, tags } = req.body;
+  console.log(title, content, img, tags);
 }
 
 // * UPDATE
