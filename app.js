@@ -1,3 +1,4 @@
+// CONFIG EXPRESS
 const express = require("express");
 const app = express();
 const port = 3000;
@@ -5,14 +6,16 @@ const port = 3000;
 app.use(express.json());
 app.use(express.static("public"));
 
+// ROUTES
 const postsRouter = require("./routers/posts");
-
 app.use("/posts", postsRouter);
 
+// HOMEPAGE
 app.get("/", (req, res) => {
   res.send("Server del mio blog");
 });
 
+// LISTENING
 app.listen(port, () => {
   console.log(`App Express listening on port ${port}`);
 });
