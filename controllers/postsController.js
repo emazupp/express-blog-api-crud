@@ -17,6 +17,12 @@ function filterPostByTag(res, tag) {
     : res.send("Nessun elemento trovato con i tag richiesti");
 }
 
+function invalidParamsError() {
+  const err = new Error("Invalid params");
+  err.code = 400;
+  throw err;
+}
+
 // * INDEX
 function index(req, res) {
   const { tag } = req.query;
@@ -33,9 +39,7 @@ function show(req, res) {
 // * STORE
 function store(req, res) {
   const { title, content, img, tags } = req.body;
-  if (!title || !content || !img || !tags?.length) {
-    return res.status(400).json({ error: "Invalid params" });
-  }
+  if (!title || !content || !img || !tags?.length) invalidParamsError();
   const id = posts.at(-1).id + 1;
   const newPost = { id, title, content, img, tags };
   posts.push(newPost);
@@ -46,9 +50,7 @@ function store(req, res) {
 function update(req, res) {
   const id = parseInt(req.params.id);
   const { title, content, img, tags } = req.body;
-  if (!title || !content || !img || !tags?.length) {
-    return res.status(400).json({ error: "Invalid params" });
-  }
+  if (!title || !content || !img || !tags?.length) invalidParamsError();
 
   const findedPost = findPostById(res, id);
 
