@@ -2,7 +2,12 @@ const posts = require("../data/posts");
 
 function findPostById(res, id) {
   const findedPost = posts.find((post) => post.id === id);
-  return findedPost ? findedPost : res.status(404).json({ error: "Not Found" });
+  if (findedPost) return findedPost;
+  else {
+    const err = new Error("Id post not founded");
+    err.code = 404;
+    throw err;
+  }
 }
 
 function filterPostByTag(res, tag) {
